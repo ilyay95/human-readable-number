@@ -3,8 +3,12 @@ module.exports = function toReadable (number) {
   let name2 = {2 : "twenty", 3 : "thirty", 4 : "forty", 5 : "fifty", 6 : "sixty", 7 : "seventy", 8 : "eighty", 9 : "ninety"};
   let result = "";
   
-  if(number == 0) return "zero";
-  if(number >= 100) result += name1[Math.trunc(number / 100)] + ' hundred ';
+  if(number == 0) {
+      return "zero";
+  }
+  if(number >= 100){
+      result += name1[Math.trunc(number / 100)] + ' hundred ';
+  }
   if(number % 100 < 20) {
 	result += name1[number % 100];  
   } else {
