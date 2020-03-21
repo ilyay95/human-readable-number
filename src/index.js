@@ -1,11 +1,16 @@
 module.exports = function toReadable (number) {
-    const one = [' ','one','two','three','four','five','six','seven','eight','nine']
-    const teen = ['ten','eleven','twelve','thirteen','fourteen','fifteen','sixteen','seventeen','eighteen','nineteen']
-    const ty = [' ',' ','twenty','thirty','forty','fifty','sixty','seventy','eighty','ninety']
-    let result = []
-    if ( number === 0 ) { return 'zero'}
-    if ( number > 99 && number < 1000 ) { let num = (number / 100 ^ 0); result.push(one[num]); result.push('hundred'); number -= (num*100) }
-    if ( number > 19 && number < 100 ) { let num = (number / 10 ^ 0); result.push(ty[num]); number -= (num*10)}
-    if ( number > 9 && number < 20 ) { result.push(teen[(number-10)]) }
-    if ( number > 0 && number < 10 ) { result.push(one[number]) }
-    return result.join(' ')
+  let name1 = {0: "", 1 : "one", 2: "two", 3 : "three", 4 : "four", 5 : "five", 6 : "six", 7 : "seven", 8 : "eight", 9 : "nine", 10 : "ten", 11 : "eleven", 12 : "twelve", 13 : "thirteen", 14 : "fourteen", 15 : "fifteen", 16 : "sixteen", 17 : "seventeen", 18 : "eighteen", 19 : "nineteen"};
+  let name2 = {2 : "twenty", 3 : "thirty", 4 : "forty", 5 : "fifty", 6 : "sixty", 7 : "seventy", 8 : "eighty", 9 : "ninety"};
+  let result = "";
+  
+  if(number == 0) return "zero";
+  if(number >= 100) result += name1[Math.trunc(number / 100)] + ' hundred ';
+  if(number % 100 < 20) {
+	result += name1[number % 100];  
+  } else {
+	result += name2[Math.trunc((number % 100) / 10)];
+    if (number % 10) result += " " + name1[number % 10]; 
+  }
+
+  return result.trim();
+}
